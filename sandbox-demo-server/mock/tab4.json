@@ -1,0 +1,331 @@
+{
+  "status": 200,
+  "columns": [
+    {
+      "title": "Id",
+      "dataIndex": "id",
+      "key": "id"
+    },
+    {
+      "title": "一级标签",
+      "dataIndex": "levelOne",
+      "key": "levelOne"
+    },
+    {
+      "title": "二级标签",
+      "dataIndex": "levelTwo",
+      "key": "levelTwo"
+    },
+    {
+      "title": "三级标签",
+      "dataIndex": "levelThree",
+      "key": "levelThree"
+    },
+    {
+      "title": "四级标签",
+      "dataIndex": "levelFour",
+      "key": "levelFour"
+    },
+    {
+      "title": "游戏",
+      "dataIndex": "game",
+      "key": "game"
+    },
+    {
+      "title": "状态",
+      "dataIndex": "state",
+      "key": "state",
+      "slots": {
+        "customRender": "state"
+      }
+    },
+    {
+      "title": "优先级",
+      "dataIndex": "priority",
+      "key": "priority",
+      "slots": {
+        "customRender": "priority"
+      }
+    },
+    {
+      "title": "操作",
+      "dataIndex": "operator",
+      "key": "operator",
+      "slots": {
+        "customRender": "operator"
+      }
+    }
+  ],
+  "data": [
+    {
+      "id": "1",
+      "levelOne": "game",
+      "levelTwo": "wangzhe",
+      "levelThree": "caiwenji",
+      "levelFour": "xiao",
+      "game": "王者荣耀",
+      "state": "0",
+      "priority": "1"
+    },
+    {
+      "id": "2",
+      "levelOne": "video",
+      "levelTwo": "wangzhe",
+      "levelThree": "caiwenji",
+      "levelFour": "xiao",
+      "game": "吃鸡",
+      "state": "1",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "4",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "5",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "6",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "7",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "8",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "9",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    },
+    {
+      "id": "3",
+      "levelOne": "game",
+      "levelTwo": "wangzhe11",
+      "levelThree": "caiwe12",
+      "levelFour": "xiao",
+      "game": "道具城",
+      "state": "0",
+      "priority": "2"
+    }
+  ]
+}

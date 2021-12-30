@@ -1,0 +1,33 @@
+{
+  "name": "sandbox-demo-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "nodemon main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.1",
+    "koa-jwt": "^4.0.3",
+    "koa-router": "^10.1.1",
+    "koa-session": "^6.2.0",
+    "mongoose": "^6.0.5",
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "easy-pdf-merge": "^0.2.6",
+    "jspdf": "^2.4.0",
+    "jspdf-autotable": "^3.5.23",
+    "koa-body": "^4.2.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-static": "^5.0.0",
+    "labelmake": "^2.0.20",
+    "node-charts": "^1.0.7",
+    "pdf-creator-node": "^2.2.4",
+    "pdf-lib": "^1.17.1"
+  }
+}

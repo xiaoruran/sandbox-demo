@@ -1,0 +1,14 @@
+# miscellaneous files
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.iml
+
+# Dependency directories
+node_modules
