@@ -122,4 +122,19 @@ router.post('/createpdf', async (ctx) => {
   }
 })
 
+
+// 内容效果分析中内容分发总体情况
+router.post('/createoveralldistribution', async (ctx) => {
+  const data = await pdfcreator.createOverallDistribution();
+  if (data.status === 0) {
+    console.log(`./public/pdf/${data.data.src}`);
+    const res = fs.readFileSync(`./public/pdf/${data.data.src}`);
+    // 设置响应头 field 到 value:
+    ctx.set('Content-type', 'application/pdf'); // 设置返回格式 格式为application/pdf
+    ctx.body = res;
+  } else {
+    ctx.body = data;
+  }
+})
+
 module.exports = router;

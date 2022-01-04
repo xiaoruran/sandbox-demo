@@ -66,17 +66,17 @@ class Chart {
   constructor() {
     this.chart = new NodeCharts();
   }
-  async render(fileName = 'output.png') {
+  async render(fileName = 'output.png', options) {
     //监听全局异常事件
     this.chart.on('error', (err) => {
       console.log(err);
     });
     return new Promise((resolve, reject) => {
-      this.chart.render(option, (err, data) => {
+      this.chart.render(options, (err, data) => {
         if (!err) {
           let reslutPath = `${path.resolve(CONFIG.rootPath, `public/img/${fileName}`)}`
-          fs.writeFileSync(reslutPath, data);
-          resolve({ status: 0, msg: 'success', data: { fileName, } })
+          // fs.writeFileSync(reslutPath, data);
+          resolve({ status: 0, msg: 'success', data: { fileData: data, } })
         } else {
           console.error(`渲染图表失败:${err}`);
           reject({ status: -1, msg: 'failed', data: { err } });

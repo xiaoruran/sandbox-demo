@@ -5,9 +5,11 @@ const labelmake = require('labelmake');
 const { jsPDF } = require("jspdf");
 const PdfUtil = require('../pdfutils/index');
 const Config = require('../configs/index');
+const Chart = require('./chartservice.js');
 const { merge } = require('../utils/mergeFile');
 // 引入jspdf-autotab
-const { applyPlugin } = require('jspdf-autotable')
+const { applyPlugin } = require('jspdf-autotable');
+
 applyPlugin(jsPDF)
 // const autoTable = require('jspdf-autotable');
 
@@ -329,9 +331,13 @@ class PdfCreator {
 
       // 使用jspdf-autotable的插件，可以通过hook进行自定义的样式
       // doc.setFont('TencentSans', 'normal');
+      let pdfcreator = new PdfUtil(Config.pdfConfig.pageConfig);
+      pdfcreator.addTff();
+      let doc = pdfcreator.getDoc();
       doc.autoTable({
         startX: 200,
-        tableWidth: 200, // 设置宽度
+        styleY: 200,
+        tableWidth: 250, // 设置宽度
         head: [['ID', 'Name', 'Email', 'Country', 'IP-address']],
         columnStyles: { 0: { halign: 'center', fillColor: [199, 0, 24], textColor: 'red' } }, // 列的设置
         cellStyles: { 0: { halign: 'center', fillColor: [199, 0, 24], textColor: 'red' } },
@@ -359,11 +365,11 @@ class PdfCreator {
             // doc.setTextColor(239, 154, 154);
           }
         },
-      })
-      doc.save('table.pdf')
-      doc.save("public/pdf/outputTable.pdf");
+      });
+      // pdfcreator.save('table.pdf');
+      pdfcreator.save("public/pdf/outputTable.pdf");
       resolve({ status: 0, msg: 'OK', data: { src: 'outputTable.pdf' } });
-    })
+    });
   }
 
   // 内容分析主要结论总览pdf生成
@@ -373,29 +379,268 @@ class PdfCreator {
       // 设置公司logo
       pdfcreator.setLogo('./public/img/tencent.png', 60, 40);
       pdfcreator.addTff();
-      let doc = pdfcreator.getDoc();
       // doc.setTextColor('blue');
       // pdfcreator.setText("内容分析主要结论总览", 40, 60, 30);
       pdfcreator.setText1({ text: "内容分析主要结论总览", startWidth: 40, startHeight: 60, fontSize: 30, color: "blue" });
       // 分发效果分析
-      pdfcreator.setText('1、内容分发效果分析', 40, 90, 15);
+      // pdfcreator.setText1('1、内容分发效果分析', 40, 90, 15);
+      pdfcreator.setText1({ text: '1、内容分发效果分析', startWidth: 40, startHeight: 90, fontSize: 15, color: "blue" });
+      pdfcreator.setImg('./public/img/arrow.png', 40, 100, 20, 20);
+      // pdfcreator.setMultipleText('视频内容播放表现较好（看点：VV量第7，微信视频号：播放比第8）', 50,115,250,10,15);
+      let heightTo = pdfcreator.setMultipleText1({
+        text: '视频内容播放表现较好（看点：VV量第7，微信视频号：播放比第8）',
+        startWidth: 60,
+        startHeight: 115,
+        limitWidth: 250,
+        interval: 10,
+        fontSize: 15,
+        color: 'black'
+      });
+      pdfcreator.setImg('./public/img/arrow.png', 40, heightTo - 15, 20, 20);
+      let width = pdfcreator.getWordsLength('渠道内容消费角度，', 15);
+      pdfcreator.setText1({
+        text: '渠道内容消费角度，',
+        startWidth: 60,
+        startHeight: heightTo,
+        fontSize: 15,
+      });
+      // console.log(width);
+      heightTo = pdfcreator.setMultipleText1({
+        text: '视频转化较图文高约95%',
+        startWidth: 60,
+        startHeight: heightTo,
+        color: "red",
+        limitWidth: 250,
+        interval: 5,
+        offset: width,
+        fontSize: 15,
+      });
+      pdfcreator.setImg('./public/img/arrow.png', 40, heightTo - 15, 20, 20);
+      pdfcreator.setText1({
+        text: '渠道内容分发角度，',
+        startWidth: 60,
+        startHeight: heightTo,
+        fontSize: 15,
+      });
 
+      heightTo = pdfcreator.setMultipleText1({
+        text: '图文转化较视频高约3%',
+        startWidth: 60,
+        startHeight: heightTo,
+        color: "red",
+        limitWidth: 250,
+        interval: 5,
+        offset: width,
+        fontSize: 15,
+      });
+
+      heightTo = pdfcreator.setText1({
+        text: '数据源：2021.10.21-2021.11.11QQ看点以及微信视频号中数码宝贝：新世纪内容消费数据',
+        startWidth: 60,
+        startHeight: heightTo + 10,
+        fontSize: 8,
+        color: 'black',
+      });
+
+
+      // 2. 内容营销价值评估
+      pdfcreator.setText1({ text: '2、内容营销价值评估', startWidth: 300, startHeight: 90, fontSize: 15, color: "blue" });
+      // pdfcreator.setMultipleText('视频内容播放表现较好（看点：VV量第7，微信视频号：播放比第8）', 50,115,250,10,15);
+      pdfcreator.setImg('./public/img/arrow.png', 300, 100, 20, 20);
+      heightTo = pdfcreator.setMultipleText1({
+        text: '渠道内容分发对游戏登录转化提升显著（千次播放转化 > 35）',
+        startWidth: 320,
+        startHeight: 115,
+        limitWidth: 250,
+        interval: 10,
+        fontSize: 15,
+        color: 'red'
+      });
+      pdfcreator.setImg('./public/img/arrow.png', 300, heightTo - 15, 20, 20);
+      pdfcreator.setText1({
+        text: '内容分发价值',
+        startWidth: 320,
+        startHeight: heightTo,
+        fontSize: 15,
+        color: "black"
+      });
+      // console.log(width);
+      width = pdfcreator.getWordsLength('内容分发价值', 15);
+
+      heightTo = pdfcreator.setMultipleText1({
+        text: '与年龄成负相关',
+        startWidth: 320,
+        startHeight: heightTo,
+        color: "red",
+        limitWidth: 250,
+        interval: 5,
+        offset: width,
+        fontSize: 15,
+      });
+
+      pdfcreator.setImg('./public/img/arrow.png', 300, heightTo - 15, 20, 20);
+      pdfcreator.setText1({
+        text: '渠道分发价值',
+        startWidth: 320,
+        startHeight: heightTo,
+        fontSize: 15,
+        color: 'black'
+      });
+
+      heightTo = pdfcreator.setMultipleText1({
+        text: '男性大于女性',
+        startWidth: 320,
+        startHeight: heightTo,
+        color: "red",
+        limitWidth: 250,
+        interval: 5,
+        offset: width,
+        fontSize: 15,
+      });
+
+      heightTo = pdfcreator.setText1({
+        text: '数据源：2021.10.21-2021.11.11QQ看点以及微信视频号中数码宝贝：新世纪内容消费数据',
+        startWidth: 320,
+        startHeight: heightTo + 10,
+        fontSize: 8,
+        color: 'black',
+      });
+
+      // 内容标签创意分析
+
+      heightTo = pdfcreator.setText1({ text: '3、内容标签创意分析', startWidth: 150, startHeight: heightTo + 30, fontSize: 15, color: "blue" });
+      // pdfcreator.setMultipleText('视频内容播放表现较好（看点：VV量第7，微信视频号：播放比第8）', 50,115,250,10,15);
+      pdfcreator.setImg('./public/img/arrow.png', 150, heightTo - 5, 20, 20);
+      heightTo = pdfcreator.setMultipleText1({
+        text: '"主播视频"对游戏登录转化效果明显',
+        startWidth: 170,
+        startHeight: heightTo + 10,
+        limitWidth: 250,
+        interval: 10,
+        fontSize: 15,
+        color: 'black'
+      });
+      pdfcreator.setImg('./public/img/arrow.png', 150, heightTo - 15, 20, 20);
+      heightTo = pdfcreator.setMultipleText1({
+        text: '男性主播更偏好教学类内容，女性偏好审美类内容',
+        startWidth: 170,
+        startHeight: heightTo,
+        limitWidth: 250,
+        interval: 5,
+        fontSize: 15,
+      });
+      pdfcreator.setImg('./public/img/arrow.png', 150, heightTo - 10, 20, 20);
+      heightTo = pdfcreator.setMultipleText1({
+        text: '“主播视频”在低年龄段转化效果好，中高年龄段关注游戏玩法及基础介绍性质内容',
+        startWidth: 170,
+        startHeight: heightTo + 5,
+        limitWidth: 250,
+        interval: 5,
+        fontSize: 15,
+      });
+
+      heightTo = pdfcreator.setText1({
+        text: '数据源：2021.10.21-2021.11.11QQ看点以及微信视频号中数码宝贝：新世纪内容消费数据',
+        startWidth: 170,
+        startHeight: heightTo + 10,
+        fontSize: 8,
+        color: 'black',
+      });
       pdfcreator.save('public/pdf/mainconclusion.pdf');
       resolve({ status: 0, msg: 'OK', data: { src: 'mainconclusion.pdf' } });
+    });
+  }
+
+  // 内容效果分析中内容分发总体情况
+  createOverallDistribution() {
+    return new Promise(async (resolve, reject) => {
+      let pdfcreator = new PdfUtil(Config.pdfConfig.pageConfig);
+      pdfcreator.addTff();
+      pdfcreator.setLogo('./public/img/tencent.png', 40, 40);
+      let heightTo = pdfcreator.setText1({
+        text: '数码宝贝：新世纪看点内容分发总体情况',
+        startWidth: 40,
+        startHeight: 60,
+        color: 'blue',
+        fontSize: 30,
+      });
+      heightTo = pdfcreator.setTextArr({
+        textArr: ["图文内容数量位列游戏", "第3位，", "曝光量位列", "第39位。"],
+        colorArr: ['black', 'red', 'black', 'red'],
+        startWidth: 40,
+        startHeight: heightTo + 10,
+        fontSize: 20,
+      });
+
+      heightTo = pdfcreator.setTextArr({
+        textArr: ["视频内容数量位列", "第25位，", "曝光量位列", "第13位,", "VV量位列", "第七位"],
+        colorArr: ['black', 'red', 'black', 'red', 'black', 'red'],
+        startWidth: 40,
+        startHeight: heightTo + 10,
+        fontSize: 20,
+      })
+
+      heightTo = pdfcreator.setText1({
+        text: '游戏图文内容数量及曝光量',
+        color: 'black',
+        startWidth: 80,
+        startHeight: heightTo + 50,
+        fontSize: 15,
+      });
+      let beginTime = new Date().getTime();
+      // 创建图表
+      let options = {
+        xAxis: {
+          type: 'category',
+          data: ['游戏A', '游戏B', '游戏C', '游戏D', '游戏E ', '数码宝贝新世界',],
+          // 设置全部显示，不能隔一个显示一个
+          axisLabel: { interval: 0, rotate: 40 },
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            data: [200, 180, 160, 110, 70, 20],
+            type: 'bar',
+            showBackground: true,
+            backgroundStyle: {
+              color: 'rgba(0, 0, 180, 0.4)'
+            },
+            itemStyle: {
+              color: 'blue'
+            }
+          }
+        ],
+
+      }
+
+      let chart = new Chart();
+      let data = await chart.render('chart.png', options);
+      
+      
+      if (data.status !== 0) {
+        resolve({ status: -1, msg: 'failed', data: { desc: 'chart generate failed' } });
+      }
+      pdfcreator.setImgByBinary(data.data.fileData, 70, heightTo, 200, 150);
+      let endTime = new Date().getTime();
+      console.log(`图表全流程生成时间：${endTime - beginTime}ms`);
+      pdfcreator.save("public/pdf/outputOverallDistribution.pdf");
+
+      resolve({ status: 0, msg: 'OK', data: { src: 'outputOverallDistribution.pdf' } });
     })
   }
 
   // 生成html文件
   createHtml() {
     return new Promise((resolve, reject) => {
-
-    })
+    });
   }
 
   // 合并pdf文件
   createpdf() {
     return new Promise((resolve, reject) => {
-      merge(['./public/pdf/output6.pdf', './public/pdf/output5.pdf', './public/pdf/outputFragmentCover.pdf'], './public/pdf/output7.pdf').then(() => {
+      merge(['./public/pdf/output6.pdf', './public/pdf/output5.pdf', './public/pdf/mainconclusion.pdf', './public/pdf/outputFragmentCover.pdf'], './public/pdf/output7.pdf').then(() => {
         resolve({ status: 0, msg: 'OK', data: { src: 'output7.pdf' } })
       }).catch((err) => {
         reject(err);
